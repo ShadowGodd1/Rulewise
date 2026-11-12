@@ -133,6 +133,50 @@ a release if the documentation site is part of the announcement. Newer versions 
 `mkdocs-material` print an end-of-life notice that strict mode treats as a warning; set
 `NO_MKDOCS_2_WARNING=1` in CI if you see that message.
 
+## Troubleshooting trusted publishing
+
+### `invalid-publisher`: no corresponding publisher
+
+This means the OIDC token is valid but PyPI has no pending or normal trusted publisher
+that matches the claims. For this repository the values must be exact:
+
+| field on PyPI | value |
+|---|---|
+| PyPI project name | `rulewise` |
+| Owner | `ShadowGodd1` |
+| Repository name | `Rulewise` |
+| Workflow name | `publish.yml` |
+| Environment name | `pypi` |
+
+Add it at https://pypi.org/manage/account/publishing/ before the first upload. For a new
+project this is a **pending publisher**, not a publisher on an existing project. After saving,
+re-run the failed publish workflow or push a new tag.
+
+The claims printed in the error should include:
+
+```text
+repository: ShadowGodd1/Rulewise
+workflow_ref: ShadowGodd1/Rulewise/.github/workflows/publish.yml@refs/tags/v0.1.0
+environment: pypi
+```
+
+If any of those differ, fix the workflow or the publisher configuration. Do not copy the
+`sub` claim into the form; the form fields are the five values in the table above.
+
+### Token upload instead of OIDC
+
+A project-scoped PyPI API token also works. Create one at
+https://pypi.org/manage/account/token/ and either upload locally with `twine` or add it as a
+repository secret and pass it to the action:
+
+```yaml
+- uses: pypa/gh-action-pypi-publish@release/v1
+  with:
+    password: ${{ secrets.PYPI_API_TOKEN }}
+```
+
+Remove the `id-token: write` permission only if you stop using trusted publishing.
+
 ## Version policy
 
 Use semantic versioning. Before 1.0, minor releases may change behaviour. A release that changes
