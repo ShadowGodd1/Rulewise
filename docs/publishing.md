@@ -113,7 +113,14 @@ If you prefer a token-based workflow, add `PYPI_API_TOKEN` as a repository secre
 
 ## Documentation site
 
-The docs are plain Markdown with a `mkdocs.yml` configuration:
+The docs are plain Markdown with a `mkdocs.yml` configuration. The `docs` workflow builds and
+pushes them to the `gh-pages` branch. Enable GitHub Pages once in the repository settings:
+
+1. Open Settings, then Pages.
+2. Under Build and deployment, choose Deploy from a branch.
+3. Select the `gh-pages` branch and the root folder.
+
+The site is then served at `https://shadowgodd1.github.io/Rulewise/`. To build locally:
 
 ```bash
 pip install mkdocs mkdocs-material

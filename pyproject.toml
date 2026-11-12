@@ -30,7 +30,7 @@ dependencies = ["numpy>=1.23", "scipy>=1.9", "pandas>=1.5"]
 Homepage = "https://github.com/ShadowGodd1/Rulewise"
 Repository = "https://github.com/ShadowGodd1/Rulewise"
 Issues = "https://github.com/ShadowGodd1/Rulewise/issues"
-Documentation = "https://shadowgodd1.github.io/Rulewise/"
+Documentation = "https://github.com/ShadowGodd1/Rulewise/tree/main/docs"
 Changelog = "https://github.com/ShadowGodd1/Rulewise/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
