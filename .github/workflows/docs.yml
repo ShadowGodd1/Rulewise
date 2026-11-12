@@ -24,6 +24,9 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install --upgrade pip
       - run: pip install -e ".[docs]"
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - run: python -m mkdocs build --strict
         env:
           NO_MKDOCS_2_WARNING: "1"
