@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rulewise"
+version = "0.1.0"
+description = "Association rule mining with statistically sound validation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Adnan Mohamud" }]
+keywords = ["association rules", "pattern mining", "multiple testing", "frequent itemsets"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = ["numpy>=1.23", "scipy>=1.9", "pandas>=1.5"]
+
+[project.urls]
+Homepage = "https://github.com/ShadowGodd1/Rulewise"
+Repository = "https://github.com/ShadowGodd1/Rulewise"
+Issues = "https://github.com/ShadowGodd1/Rulewise/issues"
+Documentation = "https://shadowgodd1.github.io/Rulewise/"
+Changelog = "https://github.com/ShadowGodd1/Rulewise/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+plot = ["matplotlib"]
+sklearn = ["scikit-learn"]
+docs = ["mkdocs>=1.6", "mkdocs-material>=9.5"]
+dev = ["pytest", "statsmodels", "mlxtend", "polars", "scikit-learn", "matplotlib"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

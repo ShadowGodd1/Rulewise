@@ -1,0 +1,15 @@
+# build and packaging artifacts
+build/
+dist/
+site/
+*.egg-info/
+__pycache__/
+*.pyc
+
+# benchmark data (public; fetch with benchmarks/get_data.py)
+benchmarks/data/*.csv
+benchmarks/data/*.data
+
+# local outputs
+benchmarks/*.log
+.pytest_cache/

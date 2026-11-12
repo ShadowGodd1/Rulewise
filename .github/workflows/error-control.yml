@@ -1,0 +1,26 @@
+name: error-control simulation
+on:
+  schedule: [{cron: "0 3 * * 1"}]
+  workflow_dispatch:
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -e ".[dev]"
+      - run: python benchmarks/error_control_simulation.py 1000 | tee sim.txt
+      - run: |
+          python - <<'PY'
+          import re, sys
+          bad = []
+          for line in open("sim.txt"):
+              m = re.search(r"(\d+)/(\d+)\s+([\d.]+)\s+([\d.]+)-([\d.]+)", line)
+              if m and float(m.group(4)) > 0.05:      # lower CI bound above nominal alpha
+                  bad.append(line.strip())
+          print("\n".join(bad) or "all configurations consistent with alpha")
+          sys.exit(1 if bad else 0)
+          PY
+        shell: bash
