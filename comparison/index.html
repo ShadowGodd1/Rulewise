@@ -1,0 +1,1240 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Statistically sound association rule mining in Python">
+      
+      
+      
+        <link rel="canonical" href="https://shadowgodd1.github.io/Rulewise/comparison/">
+      
+      
+        <link rel="prev" href="../limitations/">
+      
+      
+        <link rel="next" href="../tutorials/groceries/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Comparison - rulewise</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#comparison-with-existing-libraries" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="rulewise" class="md-header__button md-logo" aria-label="rulewise" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            rulewise
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Comparison
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ShadowGodd1/Rulewise" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ShadowGodd1/Rulewise
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="rulewise" class="md-nav__button md-logo" aria-label="rulewise" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    rulewise
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ShadowGodd1/Rulewise" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ShadowGodd1/Rulewise
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparison
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#correctness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correctness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groceries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groceries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planted-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planted rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fit-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fit time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classifier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-comparison-supports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the comparison supports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#positioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproduce
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/groceries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groceries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#correctness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correctness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groceries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groceries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planted-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planted rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fit-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fit time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classifier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-comparison-supports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the comparison supports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#positioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproduce
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="comparison-with-existing-libraries">Comparison with existing libraries<a class="headerlink" href="#comparison-with-existing-libraries" title="Permanent link">&para;</a></h1>
+<p>This page summarises the head-to-head evaluation in <code>benchmarks/COMPARISON.md</code>. The full report
+is generated by <code>benchmarks/library_comparison.py</code> and can be reproduced with the commands at the
+end of this page.</p>
+<p>Tested on 2026-11-12 with Python 3.12.4, mlxtend 0.25.0, numpy 2.3.5, pandas 3.1.1 and scipy
+1.18.1.</p>
+<h2 id="correctness">Correctness<a class="headerlink" href="#correctness" title="Permanent link">&para;</a></h2>
+<p>Frequent itemsets and absolute counts are identical to mlxtend's <code>fpgrowth</code> on Groceries at
+minimum support 0.02, 0.01, 0.005 and 0.002:</p>
+<table>
+<thead>
+<tr>
+<th>minimum support</th>
+<th>mlxtend itemsets</th>
+<th>rulewise itemsets</th>
+<th>identical</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.02</td>
+<td>122</td>
+<td>122</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>0.01</td>
+<td>333</td>
+<td>333</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>0.005</td>
+<td>1,001</td>
+<td>1,001</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>0.002</td>
+<td>4,223</td>
+<td>4,223</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>The statistical layer is an addition, not a different miner.</p>
+<h2 id="pure-noise">Pure noise<a class="headerlink" href="#pure-noise" title="Permanent link">&para;</a></h2>
+<p>500 independent null datasets, 3,000 transactions, 25 items, varied item frequencies. Nominal
+level 0.05.</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>mean rules</th>
+<th>datasets with at least one rule</th>
+<th>rate (95% CI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mlxtend</td>
+<td>1,929</td>
+<td>500/500</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>rulewise holdout</td>
+<td>0.02</td>
+<td>4/500</td>
+<td>0.008 (0.003-0.020)</td>
+</tr>
+<tr>
+<td>rulewise direct</td>
+<td>0.01</td>
+<td>4/500</td>
+<td>0.008 (0.003-0.020)</td>
+</tr>
+</tbody>
+</table>
+<p>The four false-positive datasets each returned one association as two symmetric rules. That is a
+legitimate 5% level false discovery, not a bug. mlxtend's rules were also tested on a fresh null
+sample: 4.2% replicated, about what chance predicts.</p>
+<h2 id="groceries">Groceries<a class="headerlink" href="#groceries" title="Permanent link">&para;</a></h2>
+<p>Five random halves. Rules were found on one half and evaluated on the other. "Productive" means
+the rule still beats every simpler version of itself on the held-out half.</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>rules</th>
+<th>productive on held-out</th>
+<th>lift &gt; 1</th>
+<th>productive rules vs classical</th>
+<th>fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>classical all</td>
+<td>670</td>
+<td>48.8%</td>
+<td>98.5%</td>
+<td>100%</td>
+<td>0.19 s</td>
+</tr>
+<tr>
+<td>classical lift &gt;= 2</td>
+<td>350</td>
+<td>48.9%</td>
+<td>99.9%</td>
+<td>52.1%</td>
+<td>-</td>
+</tr>
+<tr>
+<td>classical top-K by lift</td>
+<td>174</td>
+<td>47.0%</td>
+<td>100%</td>
+<td>25.1%</td>
+<td>-</td>
+</tr>
+<tr>
+<td>mlxtend plus Fisher and Holm</td>
+<td>185</td>
+<td>64.9%</td>
+<td>100%</td>
+<td>37.0%</td>
+<td>-</td>
+</tr>
+<tr>
+<td>rulewise holdout</td>
+<td>116</td>
+<td>98.7%</td>
+<td>100%</td>
+<td>35.3%</td>
+<td>0.05 s</td>
+</tr>
+<tr>
+<td>rulewise direct</td>
+<td>174</td>
+<td>99.3%</td>
+<td>100%</td>
+<td>53.6%</td>
+<td>0.07 s</td>
+</tr>
+</tbody>
+</table>
+<p>Classical rules on this data are mostly real: 98.5% still have lift above 1 on held-out baskets.
+Their problem is redundancy, not statistical falsehood. About half are no longer productive once
+simpler rules are considered. rulewise keeps 98% to 99% of what it returns productive, at the cost
+of recall.</p>
+<p>The <code>mlxtend plus Fisher and Holm</code> row is the strongest classical statistical baseline: select
+candidates on one half, test the 2x2 association on the other half, correct with Holm. Only 3.1%
+of those rules survived the productivity test on a third evaluation in the planted benchmark. A
+significant association is not the same as a non-redundant rule.</p>
+<h2 id="planted-rules">Planted rules<a class="headerlink" href="#planted-rules" title="Permanent link">&para;</a></h2>
+<p>Five datasets, 20,000 baskets, 30 items, four planted rules and 15% noise. Rules were mined on one
+half and evaluated on the other.</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>rules</th>
+<th>productive on test</th>
+<th>planted recall</th>
+<th>exact planted precision</th>
+<th>reliable F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>classical all</td>
+<td>15,685</td>
+<td>1.4%</td>
+<td>100%</td>
+<td>0.0%</td>
+<td>0.03</td>
+</tr>
+<tr>
+<td>classical top-35 by lift</td>
+<td>35</td>
+<td>9.1%</td>
+<td>65%</td>
+<td>7.4%</td>
+<td>0.16</td>
+</tr>
+<tr>
+<td>classical top-35 by confidence</td>
+<td>35</td>
+<td>1.1%</td>
+<td>0%</td>
+<td>0.0%</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>mlxtend plus Fisher and Holm</td>
+<td>3,486</td>
+<td>3.1%</td>
+<td>100%</td>
+<td>0.1%</td>
+<td>0.06</td>
+</tr>
+<tr>
+<td>rulewise holdout</td>
+<td>35</td>
+<td>100.0%</td>
+<td>100%</td>
+<td>11.4%</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>rulewise direct</td>
+<td>35</td>
+<td>100.0%</td>
+<td>100%</td>
+<td>11.4%</td>
+<td>1.00</td>
+</tr>
+</tbody>
+</table>
+<p>The exact planted precision is low because rulewise also returns genuine sub-rules and reverse
+rules, not because it returns false rules. The reliable F1 combines productive precision with
+planted recall; read it as a summary of a trustworthy set, not as a count of planted rules.</p>
+<h2 id="fit-time">Fit time<a class="headerlink" href="#fit-time" title="Permanent link">&para;</a></h2>
+<p>Single core, this machine. rulewise was faster than mlxtend in these runs even though it tests
+every candidate, because it never materialises the full rule list.</p>
+<table>
+<thead>
+<tr>
+<th>data</th>
+<th>mlxtend</th>
+<th>efficient-apriori</th>
+<th>rulewise holdout</th>
+<th>rulewise direct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Groceries, 169 items, support 0.005</td>
+<td>0.35 s</td>
+<td>0.17 s</td>
+<td>0.08 s</td>
+<td>0.09 s</td>
+</tr>
+<tr>
+<td>synthetic, 20k x 30, support 0.01</td>
+<td>2.62 s</td>
+<td>8.25 s</td>
+<td>0.62 s</td>
+<td>0.75 s</td>
+</tr>
+<tr>
+<td>dense null, 50k x 60, support 0.0005</td>
+<td>8.39 s</td>
+<td>119.33 s</td>
+<td>2.75 s</td>
+<td>4.26 s</td>
+</tr>
+</tbody>
+</table>
+<p>Speed is not the contribution. The statistical pass grows with the number of candidates, so
+dense data at low support can be slow. The optional PyFIM backend was not testable on Python 3.12
+and Windows; the core uses the pure-Python backend.</p>
+<h2 id="classifier">Classifier<a class="headerlink" href="#classifier" title="Permanent link">&para;</a></h2>
+<p>UCI Mushrooms, 5-fold cross-validation with 3 repeats. Accuracy and log-loss.</p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>accuracy</th>
+<th>log-loss</th>
+<th>rules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>majority class</td>
+<td>0.518</td>
+<td>0.693</td>
+<td>-</td>
+</tr>
+<tr>
+<td>logistic regression</td>
+<td>0.9998</td>
+<td>0.0007</td>
+<td>-</td>
+</tr>
+<tr>
+<td>decision tree, depth 6</td>
+<td>0.9959</td>
+<td>0.0141</td>
+<td>-</td>
+</tr>
+<tr>
+<td>rulewise holdout</td>
+<td>0.9957</td>
+<td>0.0209</td>
+<td>1,042</td>
+</tr>
+<tr>
+<td>rulewise direct</td>
+<td>0.9970</td>
+<td>0.0113</td>
+<td>1,373</td>
+</tr>
+</tbody>
+</table>
+<p>Mushrooms is a best case for an associative classifier: categorical features and strong
+conjunctions. rulewise is competitive but does not beat logistic regression. On dense numeric
+data the gap is much larger; see <a href="../limitations/">Limitations</a>.</p>
+<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
+<p>One hidden item per held-out Groceries basket, hit@5:</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>hit@5</th>
+<th>coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>popularity</td>
+<td>26.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>classical all</td>
+<td>20.1%</td>
+<td>92.7%</td>
+</tr>
+<tr>
+<td>rulewise holdout</td>
+<td>18.7%</td>
+<td>85.3%</td>
+</tr>
+<tr>
+<td>rulewise direct</td>
+<td>19.7%</td>
+<td>90.2%</td>
+</tr>
+</tbody>
+</table>
+<p>A popularity baseline wins on raw hit rate. Use <code>recommend</code> when you need an explanation, not
+when you need the best hit rate.</p>
+<h2 id="what-the-comparison-supports">What the comparison supports<a class="headerlink" href="#what-the-comparison-supports" title="Permanent link">&para;</a></h2>
+<p>Supported:</p>
+<ul>
+<li>exact frequent-itemset mining;</li>
+<li>empirical error control on null data;</li>
+<li>much higher held-out productivity than a classical list;</li>
+<li>honest effect sizes in holdout mode;</li>
+<li>a compact, readable rule set;</li>
+<li>speed at these scales;</li>
+<li>a scikit-learn-compatible API.</li>
+</ul>
+<p>Not supported:</p>
+<ul>
+<li>higher recall than a classical list;</li>
+<li>better recommendation hit rate than popularity;</li>
+<li>better classification than logistic regression or a tree;</li>
+<li>a full replacement for mlxtend's feature set (closed itemsets, many metrics, constraints).</li>
+</ul>
+<h2 id="positioning">Positioning<a class="headerlink" href="#positioning" title="Permanent link">&para;</a></h2>
+<p>Use mlxtend when you want the full classical catalogue, many metrics, or closed and maximal
+itemsets. Use rulewise when a short, statistically vetted list matters more than recall, and when
+you need to defend each rule to a reviewer, an auditor or a domain expert.</p>
+<h2 id="reproduce">Reproduce<a class="headerlink" href="#reproduce" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">pip install -e &quot;.[dev]&quot;
+python benchmarks/get_data.py
+python benchmarks/library_comparison.py --section all --runs 500 --seeds 5 \
+       --out benchmarks/COMPARISON.md
+</code></pre>
+<p>The internal review with the full discussion is in <code>benchmarks/PRE_PUBLISH_REVIEW.md</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

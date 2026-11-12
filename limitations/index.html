@@ -1,0 +1,1065 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Statistically sound association rule mining in Python">
+      
+      
+      
+        <link rel="canonical" href="https://shadowgodd1.github.io/Rulewise/limitations/">
+      
+      
+        <link rel="prev" href="../methodology/">
+      
+      
+        <link rel="next" href="../comparison/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Limitations - rulewise</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#limitations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="rulewise" class="md-header__button md-logo" aria-label="rulewise" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            rulewise
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Limitations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ShadowGodd1/Rulewise" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ShadowGodd1/Rulewise
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="rulewise" class="md-nav__button md-logo" aria-label="rulewise" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    rulewise
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ShadowGodd1/Rulewise" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ShadowGodd1/Rulewise
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recall-is-lower-than-a-classical-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recall is lower than a classical list
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redundancy-is-reduced-not-eliminated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redundancy is reduced, not eliminated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basket-size-and-other-confounders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basket size and other confounders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#independent-and-identically-distributed-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent and identically distributed rows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-mode-effect-sizes-are-optimistic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct mode effect sizes are optimistic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#small-samples-and-rare-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Small samples and rare items
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dense-numeric-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dense numeric data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#positive-associations-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive associations only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation quality
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classification-is-competitive-not-superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classification is competitive, not superior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-testing-is-conservative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple testing is conservative
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyfim-is-optional-and-legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyFIM is optional and legacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-causal-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No causal claims
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to report
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/groceries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groceries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recall-is-lower-than-a-classical-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recall is lower than a classical list
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redundancy-is-reduced-not-eliminated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redundancy is reduced, not eliminated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basket-size-and-other-confounders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basket size and other confounders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#independent-and-identically-distributed-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent and identically distributed rows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-mode-effect-sizes-are-optimistic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct mode effect sizes are optimistic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#small-samples-and-rare-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Small samples and rare items
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dense-numeric-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dense numeric data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#positive-associations-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive associations only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation quality
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classification-is-competitive-not-superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classification is competitive, not superior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-testing-is-conservative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple testing is conservative
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyfim-is-optional-and-legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyFIM is optional and legacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-causal-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No causal claims
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to report
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h1>
+<p>No method is free of trade-offs. These are the limits that matter when deciding whether rulewise
+is appropriate, with the measured evidence where it exists.</p>
+<h2 id="recall-is-lower-than-a-classical-list">Recall is lower than a classical list<a class="headerlink" href="#recall-is-lower-than-a-classical-list" title="Permanent link">&para;</a></h2>
+<p>The error guarantee is conservative. On Groceries, rulewise returned about half as many
+held-out-productive rules as a classical list in direct mode, and about a third in holdout mode.
+If your goal is to collect every possible candidate and filter by hand, a classical miner is a
+larger haystack.</p>
+<p>The power study in <code>benchmarks/RESULTS.md</code> shows the same effect. With 20 planted 3-item patterns
+among 1,000 items, n = 5,000 and minimum support 0.001, rulewise recovered 9 of 20 patterns in
+holdout mode and 11 of 20 in direct mode at the weakest signal. It recovered 20 of 20 once the
+signal was stronger (strength 0.005 and above), with zero false rules. Weak effects need more
+data.</p>
+<p>Mitigations:</p>
+<ul>
+<li>use direct mode if you need power and can accept optimistic effect sizes;</li>
+<li>lower <code>min_support</code> and <code>min_confidence</code>, at the cost of more candidates and a slower fit;</li>
+<li>increase the sample size;</li>
+<li>use <code>alpha=0.1</code> if a 10% family-wise error rate is acceptable for exploration, and confirm on
+  a fresh sample.</li>
+</ul>
+<h2 id="redundancy-is-reduced-not-eliminated">Redundancy is reduced, not eliminated<a class="headerlink" href="#redundancy-is-reduced-not-eliminated" title="Permanent link">&para;</a></h2>
+<p>The productivity test removes rules whose extra antecedent items add nothing. It does not remove
+nested sub-rules or reverse rules. In the planted benchmark, four planted structures produced 35
+returned rules: the four planted rules, their sub-rules, and their reverse directions. All 35
+were productive on held-out data, so they are not false positives, but the set is not minimal.</p>
+<p>If you need a smaller set, use <code>query</code> to filter by antecedent size or confidence, or add a
+non-redundant or self-sufficient-itemset post-processing step. A built-in minimal-rule mode is a
+natural next feature, not something the current release guarantees.</p>
+<h2 id="basket-size-and-other-confounders">Basket size and other confounders<a class="headerlink" href="#basket-size-and-other-confounders" title="Permanent link">&para;</a></h2>
+<p>The test asks whether two items are independent. Items that co-occur only because some baskets
+are larger are dependent, so a rule can be reported even though the extra item does not cause the
+other. The same applies to a third variable that drives both items. The shuffle null in
+<code>validate</code> preserves item frequencies but does not model basket-size effects or confounding.</p>
+<p>This is a property of the null hypothesis, not a bug: the rule is a real association in the
+sample. It is not evidence of causation or of a useful intervention.</p>
+<h2 id="independent-and-identically-distributed-rows">Independent and identically distributed rows<a class="headerlink" href="#independent-and-identically-distributed-rows" title="Permanent link">&para;</a></h2>
+<p>All p-values assume exchangeable transactions. Repeated baskets from the same household, grouped
+or clustered data, time series, and survey weights violate this. The effective sample size is
+smaller than the row count, and the p-values can be too small.</p>
+<p>Mitigations:</p>
+<ul>
+<li>split by group, not by row, when fitting and validating;</li>
+<li>use a holdout part that is independent in the same sense;</li>
+<li>treat the output as descriptive, not confirmatory, when the rows are not exchangeable.</li>
+</ul>
+<h2 id="direct-mode-effect-sizes-are-optimistic">Direct mode effect sizes are optimistic<a class="headerlink" href="#direct-mode-effect-sizes-are-optimistic" title="Permanent link">&para;</a></h2>
+<p>In direct mode, the same data selects the rules and estimates their confidence and lift. Rules
+are selected partly because their effect is large in that sample, so the reported effects are
+biased upward. This is the winner's curse. The p-values remain valid under the layered
+correction, but the confidence and lift columns do not.</p>
+<p>Use holdout mode when you need honest effect sizes, or validate direct-mode rules on a fresh
+sample.</p>
+<h2 id="small-samples-and-rare-items">Small samples and rare items<a class="headerlink" href="#small-samples-and-rare-items" title="Permanent link">&para;</a></h2>
+<p>A rule with a small <code>count</code> can have a large lift and a wide interval. The Wilson interval and the
+bootstrap interval show this, but the point estimate can still mislead. Items that occur in every
+transaction are excluded because they cannot appear in a significant rule. Rare items may never
+reach the support floor.</p>
+<p>Raise <code>min_support</code> for dense data to keep the candidate count manageable. Lower it only when
+the sample is large enough for the resulting counts to be meaningful.</p>
+<h2 id="dense-numeric-data">Dense numeric data<a class="headerlink" href="#dense-numeric-data" title="Permanent link">&para;</a></h2>
+<p>rulewise predicts or describes with conjunctions of discrete items. Numeric features must be
+binned first. Signal spread thinly across many numeric features is a weak case: each rule covers
+a small region, and prediction uses one best rule rather than accumulating evidence. On digits,
+the classifier reached about 0.61 accuracy against 0.97 for logistic regression. Use a linear
+model or a tree ensemble when accuracy is the goal.</p>
+<p>Binning also matters. Quantile bins inside each training fold avoid leakage. Too many bins
+produce sparse items; too few lose signal.</p>
+<h2 id="positive-associations-only">Positive associations only<a class="headerlink" href="#positive-associations-only" title="Permanent link">&para;</a></h2>
+<p>Candidate rules require lift above 1. rulewise does not report negative associations, rules with
+lift below 1, or independence rules. It also does not mine closed or maximal itemsets, does not
+support item constraints, and does not implement top-k mining. mlxtend and other libraries cover
+some of those cases.</p>
+<h2 id="recommendation-quality">Recommendation quality<a class="headerlink" href="#recommendation-quality" title="Permanent link">&para;</a></h2>
+<p><code>recommend</code> is an explainable interface, not a state-of-the-art recommender. On Groceries with one
+hidden item per basket, hit@5 was 18.7% in holdout mode and 19.7% in direct mode. A popularity
+baseline reached 26.4%, and a classical rule list reached 20.1%. The value of <code>recommend</code> is that
+every recommendation names the rule behind it, not that it maximizes hit rate.</p>
+<h2 id="classification-is-competitive-not-superior">Classification is competitive, not superior<a class="headerlink" href="#classification-is-competitive-not-superior" title="Permanent link">&para;</a></h2>
+<p>On categorical data with a few strong conjunctions, such as Mushrooms, the classifier is close to
+logistic regression: 0.9970 accuracy against 0.9998. On Titanic it is a few points behind
+logistic regression and a depth-4 tree. The advantage is readability and an interval on every
+rule, not accuracy.</p>
+<h2 id="multiple-testing-is-conservative">Multiple testing is conservative<a class="headerlink" href="#multiple-testing-is-conservative" title="Permanent link">&para;</a></h2>
+<p>The empirical family-wise error rate on null data is about 0.8% at a nominal 5%, not 5%. The
+correction and the productivity test are both conservative, and discreteness of the Fisher test
+adds further conservatism. This is deliberate: the method is designed to avoid false rules rather
+than to maximize discoveries.</p>
+<p>The practical consequence is that a null result does not prove independence. It means the data
+did not provide enough evidence at the chosen error rate. Report the candidate count, the sample
+size and the support floor alongside the result.</p>
+<h2 id="pyfim-is-optional-and-legacy">PyFIM is optional and legacy<a class="headerlink" href="#pyfim-is-optional-and-legacy" title="Permanent link">&para;</a></h2>
+<p>PyFIM is a C extension with wheels only for old Python versions. It is not installed by default
+and the core package uses the pure-Python backend. The pure-Python backend produced identical
+itemsets in the tests and was faster than mlxtend on the benchmark datasets, so PyFIM is not
+needed for typical use.</p>
+<h2 id="no-causal-claims">No causal claims<a class="headerlink" href="#no-causal-claims" title="Permanent link">&para;</a></h2>
+<p>A significant rule is an association in the sample. It is not evidence that changing the
+antecedent will change the consequent. Confounding, selection and reverse causation remain
+possible. Use domain knowledge and, when possible, an experiment before acting on a rule.</p>
+<h2 id="what-to-report">What to report<a class="headerlink" href="#what-to-report" title="Permanent link">&para;</a></h2>
+<p>When publishing results, report:</p>
+<ul>
+<li>the mode and <code>alpha</code>;</li>
+<li>the correction method;</li>
+<li><code>min_support</code>, <code>min_confidence</code>, <code>max_antecedent</code> and <code>max_consequent</code>;</li>
+<li>the number of transactions and the number of candidates tested;</li>
+<li>the null calibration result from <code>validate</code>, with the number of null runs;</li>
+<li>the recall limitation, especially if the rule set is used as a complete catalogue.</li>
+</ul>
+<p>These are the numbers a reader needs to judge whether the guarantee applies to the analysis.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

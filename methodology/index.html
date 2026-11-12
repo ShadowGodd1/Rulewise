@@ -1,0 +1,1088 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Statistically sound association rule mining in Python">
+      
+      
+      
+        <link rel="canonical" href="https://shadowgodd1.github.io/Rulewise/methodology/">
+      
+      
+        <link rel="prev" href="../api/">
+      
+      
+        <link rel="next" href="../limitations/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Methodology - rulewise</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#methodology" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="rulewise" class="md-header__button md-logo" aria-label="rulewise" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            rulewise
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Methodology
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ShadowGodd1/Rulewise" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ShadowGodd1/Rulewise
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="rulewise" class="md-nav__button md-logo" aria-label="rulewise" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    rulewise
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ShadowGodd1/Rulewise" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ShadowGodd1/Rulewise
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-2x2-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 2x2 table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-productivity-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The productivity test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#family-wise-error-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Family-wise error rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#false-discovery-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        False discovery rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#holdout-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Holdout mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intervals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#candidate-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Candidate generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions-and-what-they-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions and what they mean
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/groceries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groceries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-2x2-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 2x2 table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-productivity-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The productivity test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#family-wise-error-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Family-wise error rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#false-discovery-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        False discovery rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#holdout-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Holdout mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intervals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#candidate-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Candidate generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions-and-what-they-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions and what they mean
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="methodology">Methodology<a class="headerlink" href="#methodology" title="Permanent link">&para;</a></h1>
+<p>This page explains what rulewise computes and why the result can be called statistically sound.
+The implementation follows the productive-rule framework of Webb (2007, 2008, 2010) and the
+tutorial of Hamalainen and Webb (2019).</p>
+<h2 id="the-problem">The problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
+<p>A rule <code>X -&gt; Y</code> is a claim that transactions containing <code>X</code> are more likely to contain <code>Y</code> than
+transactions that do not contain <code>X</code>. A classical miner applies minimum support and minimum
+confidence and returns every rule that passes. That procedure tests an enormous number of
+hypotheses without accounting for the number tested, so the chance of returning at least one
+spurious rule rises with the search space. On pure noise, a classical miner still returns
+thousands of rules.</p>
+<p>rulewise treats rule discovery as multiple hypothesis testing. It tests each candidate, corrects
+for the number of tests, and reports the corrected p-value.</p>
+<h2 id="the-2x2-table">The 2x2 table<a class="headerlink" href="#the-2x2-table" title="Permanent link">&para;</a></h2>
+<p>For a rule <code>X -&gt; Y</code>, count the four cells over the measurement data:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Y present</th>
+<th>Y absent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X present</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr>
+<td>X absent</td>
+<td>c</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+<p><code>a</code> is the number of transactions containing both sides, <code>a + b</code> the number containing <code>X</code>,
+<code>a + c</code> the number containing <code>Y</code>, and <code>n = a + b + c + d</code> the total.</p>
+<p>Support, confidence, lift, leverage and conviction are computed from these counts:</p>
+<pre><code class="language-text">support    = a / n
+confidence = a / (a + b)
+lift       = confidence / ((a + c) / n)
+leverage   = support - ((a + b) / n) * ((a + c) / n)
+conviction = (1 - (a + c) / n) / (1 - confidence)
+</code></pre>
+<h2 id="the-productivity-test">The productivity test<a class="headerlink" href="#the-productivity-test" title="Permanent link">&para;</a></h2>
+<p>A frequent and confident rule can still be redundant. If <code>A</code> already predicts <code>Y</code>, then
+<code>A and B -&gt; Y</code> may add nothing: the extra item <code>B</code> may simply ride along. Webb calls a rule
+productive if its confidence is higher than the confidence of every proper subset of its
+antecedent:</p>
+<pre><code class="language-text">productive(X -&gt; Y) = for every proper subset Z of X:
+                         confidence(X -&gt; Y) &gt; confidence(Z -&gt; Y)
+</code></pre>
+<p>rulewise tests each comparison with a one-sided Fisher exact test on the measurement data. For a
+subset <code>Z</code>, the test asks whether adding <code>X - Z</code> raises the rate of <code>Y</code> among transactions that
+already contain <code>Z</code>.</p>
+<p>The rule's p-value is the maximum over all comparisons. This is an intersection-union test: the
+rule is declared significant only if every comparison is significant. It controls the type I
+error for the null "this rule is not productive" without an additional correction across the
+comparisons, because the maximum of the p-values is itself a valid p-value for the intersection
+of the null hypotheses.</p>
+<p>For a rule with more than one item in the consequent, rulewise also requires significant positive
+dependence across every bipartition of the full itemset. An item that is merely carried along by
+the others makes the rule fail. This is the self-sufficient-itemset idea of Webb (2010). The
+reported p-value is the maximum of the productivity p-value and the partition p-value.</p>
+<p>Immediate subsets are tested first. When a comparison already reaches the cap, the search stops
+and returns a value at or above the cap. Any p-value below the cap is exact; a value above the
+cap is a lower bound, which is enough to decide that the rule is not significant.</p>
+<h2 id="multiple-testing">Multiple testing<a class="headerlink" href="#multiple-testing" title="Permanent link">&para;</a></h2>
+<p>The candidates are not independent, and the number of possible rules is large. rulewise offers
+two families of corrections.</p>
+<h3 id="family-wise-error-rate">Family-wise error rate<a class="headerlink" href="#family-wise-error-rate" title="Permanent link">&para;</a></h3>
+<p><code>correction="holm"</code> (default) or <code>"bonferroni"</code> controls the probability of returning at least one
+spurious rule at or below <code>alpha</code>. Holm is uniformly more powerful than Bonferroni and is the
+recommended default.</p>
+<h3 id="false-discovery-rate">False discovery rate<a class="headerlink" href="#false-discovery-rate" title="Permanent link">&para;</a></h3>
+<p><code>correction="bh"</code> (Benjamini-Hochberg) or <code>"by"</code> (Benjamini-Yekutieli) controls the expected share
+of false discoveries among the returned rules. <code>by</code> is valid under arbitrary dependence and is
+more conservative than <code>bh</code>.</p>
+<p>Use FDR when you can tolerate a small share of false rules in exchange for more true ones. Use
+FWER when a single false rule is unacceptable.</p>
+<p><code>correction="none"</code> disables adjustment. It is for diagnostics only.</p>
+<h2 id="holdout-mode">Holdout mode<a class="headerlink" href="#holdout-mode" title="Permanent link">&para;</a></h2>
+<p>In holdout mode, rulewise splits the transactions into an exploration part and a holdout part.
+Candidates are generated on the exploration part, using minimum support and confidence. Each
+candidate is then tested with the productivity test on the holdout part, and all reported
+measures and intervals are computed there. Because the holdout part was not used to choose the
+candidates, the tests and effect sizes are honest.</p>
+<p>The cost is statistical power: the miner sees only part of the data, and rules that are frequent
+in the full data may not reach the support floor in the exploration part.</p>
+<p><code>holdout_fraction</code> controls the split. The default is 0.5. A value of 0 disables the split and
+raises a warning because the p-values are then not valid.</p>
+<h2 id="direct-mode">Direct mode<a class="headerlink" href="#direct-mode" title="Permanent link">&para;</a></h2>
+<p>In direct mode, all data are used for both candidate generation and testing. To keep the
+family-wise error rate valid when the hypotheses are selected from the same data, rulewise uses
+Webb's layered critical values:</p>
+<ul>
+<li>rules are grouped by total size <code>l = |X| + |Y|</code>;</li>
+<li><code>alpha</code> is divided equally across the layers;</li>
+<li>within a layer, a Bonferroni correction is applied over the number of rules that could possibly
+  be reported at that size, not only the candidates that passed the filters.</li>
+</ul>
+<p>For a rule at level <code>l</code>, the critical value is:</p>
+<pre><code class="language-text">alpha / (number_of_layers * search_space_size[l])
+</code></pre>
+<p>This is why direct mode remains valid even though the support and confidence filters are applied
+to the same data. It is conservative when there are many items, because the search space grows
+combinatorially. On small data it is often more powerful than holdout mode because it uses every
+transaction.</p>
+<p>The reported confidence, lift and intervals in direct mode are measured on the same data that
+selected the rules. They are optimistically biased by the winner's curse. Use holdout mode when
+effect sizes matter; use direct mode when detection matters more.</p>
+<h2 id="intervals">Intervals<a class="headerlink" href="#intervals" title="Permanent link">&para;</a></h2>
+<p>Confidence intervals use the Wilson score interval, which behaves better than the normal
+approximation for small counts and proportions near 0 or 1.</p>
+<p>Lift and leverage intervals use a percentile bootstrap. Resampling transactions with replacement
+is equivalent to drawing the four cell counts from a multinomial distribution with the observed
+cell proportions, so no transaction-level resampling is needed. The interval reflects the
+uncertainty in the 2x2 table, not model uncertainty.</p>
+<h2 id="candidate-generation">Candidate generation<a class="headerlink" href="#candidate-generation" title="Permanent link">&para;</a></h2>
+<p>Frequent itemsets are mined with a bitset Eclat implementation. For every frequent itemset <code>S</code> and
+every split <code>S = X union Y</code> with <code>1 &lt;= |Y| &lt;= max_consequent</code> and <code>|X| &lt;= max_antecedent</code>, a rule
+is a candidate when its confidence is at least <code>min_confidence</code> and its lift is above 1. Rules
+with an empty antecedent or consequent are not generated.</p>
+<p>The implementation excludes items that occur in every transaction. They cannot appear in a
+significant rule: as a consequent they have lift 1, and as an antecedent item they add no
+coverage. This also keeps the Python and PyFIM backends identical.</p>
+<p>Class-conditional mining, used by <code>RuleClassifier</code> by default, mines each class separately. It
+produces the same candidates as the general miner and is much faster on dense data. Items that
+occur in every row of one class are re-added after mining because they are strong predictors.</p>
+<h2 id="assumptions-and-what-they-mean">Assumptions and what they mean<a class="headerlink" href="#assumptions-and-what-they-mean" title="Permanent link">&para;</a></h2>
+<p>The error guarantee is conditional on these assumptions:</p>
+<ol>
+<li><strong>Independent and identically distributed transactions.</strong> Repeated baskets, clustering,
+   time dependence or survey weights violate this.</li>
+<li><strong>Independence null.</strong> The test asks whether <code>X</code> and <code>Y</code> are independent. It does not adjust
+   for basket size, a third variable, or selection of the data.</li>
+<li><strong>Independent holdout.</strong> In holdout mode, the holdout part must not be used to choose
+   candidates. The default split satisfies this, but do not tune thresholds on the holdout part
+   and then report the same p-values.</li>
+<li><strong>Full search space in direct mode.</strong> The layered correction counts every rule that could be
+   reported at a size, not only the candidates that passed the filters.</li>
+<li><strong>Correct model of the data.</strong> The Fisher test assumes the 2x2 table is a random sample from
+   the population of interest. If rows are not exchangeable, the p-value is not meaningful.</li>
+</ol>
+<p>Under these assumptions, the probability of one or more false rules is at most <code>alpha</code> with Holm
+or Bonferroni, and the expected false discovery proportion is at most <code>alpha</code> with BH or BY.</p>
+<p>The procedure is conservative. Empirical error rates on null data are well below 5%, which means
+the method pays for its guarantee with power. This is visible in the low recall on real data and
+in the power study.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Webb, G.I. (2007). Discovering significant patterns. Machine Learning 68(1), 1-33.</li>
+<li>Webb, G.I. (2008). Layered critical values: a powerful direct-adjustment approach to
+  discovering significant patterns. Machine Learning 71(2-3), 307-323.</li>
+<li>Webb, G.I. (2010). Self-sufficient itemsets: an approach to screening potentially interesting
+  associations. ACM Transactions on Knowledge Discovery from Data 4(1), 1-20.</li>
+<li>Hamalainen, W. and Webb, G.I. (2019). A tutorial on statistically sound pattern discovery.
+  Data Mining and Knowledge Discovery 33, 325-377.</li>
+<li>Holm, S. (1979). A simple sequentially rejective multiple test procedure. Scandinavian Journal
+  of Statistics 6, 65-70.</li>
+<li>Benjamini, Y. and Hochberg, Y. (1995). Controlling the false discovery rate. Journal of the
+  Royal Statistical Society B 57, 289-300.</li>
+<li>Benjamini, Y. and Yekutieli, D. (2001). The control of the false discovery rate in multiple
+  testing under dependency. Annals of Statistics 29, 1165-1188.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
